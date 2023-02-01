@@ -1,7 +1,4 @@
 import getpass
-import datetime
-import time
-import logging
 
 
 def get_user():
