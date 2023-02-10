@@ -28,4 +28,5 @@ jobs:
         pylint $(git ls-files '*.py') --exit-zero
     - name: Test with pytest
       run: |
-        pytest
+        cd src
+        python3 test_*.py
