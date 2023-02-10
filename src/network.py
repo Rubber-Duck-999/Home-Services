@@ -1,30 +1,29 @@
 #!/usr/bin/python3
-
-import speedtest
+'''Create POST requests'''
 import enum
 import logging
 import json
+import speedtest
 import requests
 import utilities
 
+
 class Colours(enum.Enum):
-    Red    = 1
-    Orange = 2
-    Purple = 3
-    Green  = 4
-    Blue   = 5
+    '''Constants for colour scheming'''
+    RED = 1
+    ORANGE = 2
+    PURPLE = 3
+    GREEN = 4
+    BLUE = 5
 
 
 class Network:
+    '''Network class for sending data'''
 
     def __init__(self):
         '''Constructor for class'''
         self.speed = speedtest.Speedtest()
-        self.download   = 0
-        self.red    = 30
-        self.orange = 60
-        self.purple = 90
-        self.green  = 120
+        self.download = 0
         self.server = ''
         self.settings = False
 
@@ -34,9 +33,9 @@ class Network:
         config = '/home/{}/sync/config.json'
         try:
             config_name = config.format(utilities.get_user())
-            with open(config_name) as file:
+            with open(config_name, encoding='utf-8') as file:
                 data = json.load(file)
-            self.server = '{}/network'.format(data["server_address"])
+            self.server = f"{data}/network".format(data=data["server_address"])
             logging.info(self.server)
             self.settings = True
         except KeyError:
@@ -46,21 +45,23 @@ class Network:
             logging.error('Issue getting username')
             self.settings = False
 
-    def send_speed(self, down, up):
+    def send_speed(self, down, upload):
         '''Send speed to rest server'''
         logging.info("send_speed()")
         try:
-            server = self.server + '?download={}&upload={}'.format(down, up)
+            server = self.server + \
+                f'?download={down}&upload={upload}'.format(down, upload)
             response = requests.post(server, timeout=5)
             if response.status_code == 200:
                 logging.info("Requests successful")
             else:
                 logging.error('Requests unsuccessful')
-                logging.info('Response: {}'.format(response.content))
+                data = response.content
+                logging.info(f"Response: {data}".format())
         except requests.ConnectionError as error:
-            logging.error("Connection error: {}".format(error))
+            logging.error(f"Connection error: {error}".format(error))
         except requests.Timeout as error:
-            logging.error("Timeout on server: {}".format(error))
+            logging.error(f"Timeout on server: {error}".format(error))
         except OSError:
             logging.error("File couldn't be removed")
 
@@ -74,20 +75,21 @@ class Network:
             up = round(up_speed)
             self.send_speed(down, up)
         except speedtest.SpeedtestException as error:
-            logging.error('Error occurred: {}'.format(error))
+            logging.error(f'Error occurred: {error}'.format(error))
 
     def check_colour(self):
         '''Check speed of both checks'''
         logging.info("check_speed()")
-        if self.download <= self.red:
-            return Colours.Red
-        if self.download <= self.orange:
-            return Colours.Orange
-        if self.download <= self.purple:
-            return Colours.Purple
-        if self.download <= self.green:
-            return Colours.Green
-        return Colours.Blue
+        if self.download <= 30:
+            return Colours.RED
+        if self.download <= 60:
+            return Colours.ORANGE
+        if self.download <= 90:
+            return Colours.PURPLE
+        if self.download <= 120:
+            return Colours.GREEN
+        return Colours.BLUE
+
 
 if __name__ == "__main__":
     network_test = Network()

@@ -41,7 +41,8 @@ class Led:
             blinkt.set_pixel(x, red, green, blue, self.brightness)
         blinkt.show()
 
-    def get_colours(self, colour):
+    def get_colours(self, colour) -> tuple[int, int, int]:
+        '''Sets RBG colours for array'''
         blue = 0
         green = 0
         red = 0
@@ -50,31 +51,32 @@ class Led:
             green = 192
             blue = 203
             return red, green, blue
-        if colour == Colours.Red:
+        if colour == Colours.RED:
             red = 255
-        elif colour == Colours.Orange:
+        elif colour == Colours.ORANGE:
             red = 236
             green = 94
             blue = 2
-        elif colour == Colours.Purple:
+        elif colour == Colours.PURPLE:
             red = 110
             green = 51
             blue = 255
-        elif colour == Colours.Green:
+        elif colour == Colours.GREEN:
             green = 255
-        elif colour == Colours.Blue:
+        elif colour == Colours.BLUE:
             blue = 255
         return red, green, blue
 
-    def run_lights(self, network):
+    def run_lights(self, sender):
+        '''Updates light colours and checks speed'''
         for show in Colours:
             time.sleep(5)
             red, green, blue = self.get_colours(show)
             self.set_all(red, green, blue)
         time.sleep(5)
         while True:
-            colour = network.check_colour()
-            logging.info('New Colour: {}'.format(colour))
+            colour = sender.check_colour()
+            logging.info(f"New Colour: {colour}".format(colour))
             self.set_all(0, 0, 0)
             red, green, blue = self.get_colours(colour)
             self.set_all(red, green, blue)
@@ -94,3 +96,4 @@ if __name__ == "__main__":
         except KeyboardInterrupt:
             logging.error('Error occurred on keyboard')
             keyboard = True
+

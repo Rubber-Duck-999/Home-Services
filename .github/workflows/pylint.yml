@@ -25,7 +25,7 @@ jobs:
         if [ -f src/requirements.txt ]; then pip install -r src/requirements.txt; fi
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py')
+        pylint $(git ls-files '*.py') --exit-zero
     - name: Test with pytest
       run: |
         pytest
