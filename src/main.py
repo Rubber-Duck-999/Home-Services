@@ -4,11 +4,13 @@ try:
     import blinkt
 except ImportError:
     import mock_blinkt as blinkt
-import time
+
 import logging
 import os
+import time
+
 import utilities
-from network import Network, Colours
+from network import Colours, Network
 
 filename = '/home/{}/sync/InternetSpeedNotifier.log'
 
