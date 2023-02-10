@@ -36,7 +36,7 @@ class Network:
             config_name = config.format(utilities.get_user())
             with open(config_name) as file:
                 data = json.load(file)
-            self.server = '{}/network/list'.format(data["server_address"])
+            self.server = '{}/network'.format(data["server_address"])
             logging.info(self.server)
             self.settings = True
         except KeyError:
@@ -50,12 +50,8 @@ class Network:
         '''Send speed to rest server'''
         logging.info("send_speed()")
         try:
-            data = {
-                'upload': float(up),
-                'download': float(down),
-            }
-            logging.info("Sending: {}".format(data))
-            response = requests.post(self.server, json=data, timeout=5)
+            server = self.server + '?download={}&upload={}'.format(down, up)
+            response = requests.post(server, timeout=5)
             if response.status_code == 200:
                 logging.info("Requests successful")
             else:
