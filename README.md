@@ -1,5 +1,6 @@
 # InternetSpeedNotifier
-[![Pylint](https://github.com/Rubber-Duck-999/InternetSpeedNotifier/actions/workflows/pylint.yml/badge.svg)](https://github.com/Rubber-Duck-999/InternetSpeedNotifier/actions/workflows/pylint.yml)
+[![Pylint](https://github.com/Rubber-Duck-999/InternetSpeedNotifier/actions/workflows/pylint.yml/badge.svg?branch=main)](https://github.com/Rubber-Duck-999/InternetSpeedNotifier/actions/workflows/pylint.yml)
+
 Application that updates gpio LEDs from speedtest
 
 Meant to be run on raspberry pi with this hardware
