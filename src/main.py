@@ -75,25 +75,21 @@ class Led:
             self.set_all(red, green, blue)
         time.sleep(5)
         while True:
+            network.check_speed()
             colour = sender.check_colour()
             logging.info(f"New Colour: {colour}".format(colour))
             self.set_all(0, 0, 0)
             red, green, blue = self.get_colours(colour)
             self.set_all(red, green, blue)
-            time.sleep(300)
+            time.sleep(600)
 
 
 if __name__ == "__main__":
     logging.info('Starting Program')
-    keyboard = False
     led = Led()
     network = Network()
     network.get_settings()
-    while not keyboard:
-        try:
-            network.check_speed()
-            led.run_lights(network)
-        except KeyboardInterrupt:
-            logging.error('Error occurred on keyboard')
-            keyboard = True
-
+    try:
+        led.run_lights(network)
+    except KeyboardInterrupt:
+        logging.error('Error occurred on keyboard')
