@@ -5,7 +5,7 @@ import logging
 import json
 import speedtest
 import requests
-import utilities
+import src.utilities as utilities
 
 
 class Colours(enum.Enum):

@@ -1,0 +1,11 @@
+[package]
+name = "InternetSpeedNotifier"
+version = "1.0.0"
+authors = ["simon"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+simple_logger = "4.0.0"
+log = "0.4"

@@ -4,31 +4,14 @@ try:
     import blinkt
 except ImportError:
     import mock_blinkt as blinkt
-
 import logging
 import os
 import time
-
-import utilities
-from network import Colours, Network
-
-filename = '/home/{}/sync/InternetSpeedNotifier.log'
-
-try:
-    name = utilities.get_user()
-    filename = filename.format(name)
-    os.remove(filename)
-except OSError as error:
-    pass
-
-
-# Add the log message handler to the logger
-logging.basicConfig(filename=filename,
-                    format='%(asctime)s - %(levelname)s - %(message)s', 
-                    level=logging.INFO)
+import src.utilities as utilities
+from src.network import Colours, Network
 
 class Led:
-
+    '''Class for contorlling led'''
     def __init__(self):
         self.brightness = 0.05
         self.pixels = 8
@@ -37,8 +20,9 @@ class Led:
         blinkt.set_clear_on_exit(True)
 
     def set_all(self, red, green, blue):
-        for x in range(self.pixels):
-            blinkt.set_pixel(x, red, green, blue, self.brightness)
+        '''Sets all pixels on the blinkt module'''
+        for pixel in range(self.pixels):
+            blinkt.set_pixel(pixel, red, green, blue, self.brightness)
         blinkt.show()
 
     def get_colours(self, colour) -> tuple[int, int, int]:
@@ -85,6 +69,18 @@ class Led:
 
 
 if __name__ == "__main__":
+    filename = '/home/{}/sync/InternetSpeedNotifier.log'
+    try:
+        name = utilities.get_user()
+        filename = filename.format(name)
+        os.remove(filename)
+    except OSError as error:
+        pass
+
+    # Add the log message handler to the logger
+    logging.basicConfig(filename=filename,
+                        format='%(asctime)s - %(levelname)s - %(message)s', 
+                        level=logging.INFO)
     logging.info('Starting Program')
     led = Led()
     network = Network()
