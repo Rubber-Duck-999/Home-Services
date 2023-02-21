@@ -1,5 +1,7 @@
 # InternetSpeedNotifier
 
+[![Rust](https://github.com/Rubber-Duck-999/InternetSpeedNotifier/actions/workflows/rust.yml/badge.svg?branch=main)](https://github.com/Rubber-Duck-999/InternetSpeedNotifier/actions/workflows/rust.yml)
+
 Application that updates gpio LEDs from speedtest
 
 Meant to be run on raspberry pi with this hardware
