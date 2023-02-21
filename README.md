@@ -1,5 +1,4 @@
 # InternetSpeedNotifier
-[![Pylint](https://github.com/Rubber-Duck-999/InternetSpeedNotifier/actions/workflows/pylint.yml/badge.svg?branch=main)](https://github.com/Rubber-Duck-999/InternetSpeedNotifier/actions/workflows/pylint.yml)
 
 Application that updates gpio LEDs from speedtest
 
@@ -7,7 +6,9 @@ Meant to be run on raspberry pi with this hardware
 
 ## Install
 
-`pip3 install -r requirements`
+Switching to rust
+
+`cargo build`
 
 ## Blinkt
 
@@ -21,7 +22,7 @@ Uses this led array to show internet speed
 ## Testing
 
 `cd tests`
-`python3 -m pytest`
+`cargo test`
 
 ## Logging
 
