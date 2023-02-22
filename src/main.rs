@@ -2,7 +2,6 @@ use std::process;
 
 #[macro_use]
 extern crate log;
-extern crate simple_logger;
 
 use log::Level;
 
