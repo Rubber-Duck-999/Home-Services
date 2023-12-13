@@ -42,6 +42,6 @@ class Tesseract:
             self.set_angry()
 
 if __name__ == "__main__":
-    current_tesseract = Tesseract()
+    current_tesseract = Tesseract(CALM)
     while True:
         current_tesseract.show()
