@@ -1,16 +1,14 @@
-# InternetSpeedNotifier
+# Tesseract
 
-[![Rust](https://github.com/Rubber-Duck-999/InternetSpeedNotifier/actions/workflows/rust.yml/badge.svg?branch=main)](https://github.com/Rubber-Duck-999/InternetSpeedNotifier/actions/workflows/rust.yml)
+I wanted to be able to have my own Infinity Gauntlet but a little bit more control so I have put a raspberry pi zero inside the tessreact to control the light show.
 
-Application that updates gpio LEDs from speedtest
-
-Meant to be run on raspberry pi with this hardware
+[Tesseract](/static/Tesseract.jpg)
 
 ## Install
 
-Switching to rust
-
-`cargo build`
+```bash
+pip install -r requirements.txt
+```
 
 ## Blinkt
 
@@ -23,13 +21,4 @@ Uses this led array to show internet speed
 
 ## Testing
 
-`cd tests`
-`cargo test`
-
-## Logging
-
-Logging to a file under user on linux
-
-`/home/{user}/sync/InternetSpeedNotifier.log`
-
-Im using this as Im using this folder to sync multiple devices
+`python3 test_tesseract.py`
