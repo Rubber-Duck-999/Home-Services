@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Check equirements
-      run: pip install safety && safety check
+      run: pip install safety && safety check -r requirements.txt
   test:
     runs-on: ubuntu-latest
     steps:
@@ -24,4 +24,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Deploy to network node
-      run: secho 'Some Text' | ssh pi@192.168.0.6 -T "cat > /home/pi/remotefile.txt"
+      run: scp tesseract.py constants.py pi@192.168.0.6:/home/pi/deploy/
