@@ -14,7 +14,7 @@ pip install -r requirements.txt
 
 Uses this led array to show internet speed
 
-<img src="blinkt.png" alt="drawiPimoroni Blinkt" width="200"/>
+<img src="/static/blinkt.png" alt="drawiPimoroni Blinkt" width="200"/>
 
 [Link](https://shop.pimoroni.com/products/blinkt?variant=22408658695)
 
