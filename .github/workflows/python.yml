@@ -24,4 +24,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Deploy to network node
-      run: ssh pi@192.168.0.6
+      run: secho 'Some Text' | ssh pi@192.168.0.6 -T "cat > /home/pi/remotefile.txt"
