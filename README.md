@@ -1,6 +1,6 @@
 # Tesseract
 
-I wanted to be able to have my own Infinity Gauntlet but a little bit more control so I have put a raspberry pi zero inside the tessreact to control the light show.
+I wanted to be able to have my own Infinity Gauntlet but a little bit more control so I have put a raspberry pi zero inside the tesseract to control the light show.
 
 ![Tesseract](/static/Tesseract.jpg)
 
