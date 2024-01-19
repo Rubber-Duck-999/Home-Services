@@ -1,0 +1,40 @@
+name: Python
+
+on:
+  push:
+    branches:
+    - '!main'   # excludes master
+
+jobs:
+  check-requirements-tesseract:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Check requirements
+      run:
+        - cd tesseract
+        - pip install safety && safety check -r requirements.txt
+  check-requirements-mood-light:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Check requirements
+      run:
+        - cd mood-light
+        - pip install safety && safety check -r requirements.txt
+  test-tesseract:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test
+      run: 
+        - cd tesseract
+        - python3 test_tesseract.py
+  test-mood:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test
+      run: 
+        - cd mood-light
+        - python3 test_main.py
