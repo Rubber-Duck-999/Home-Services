@@ -2,9 +2,7 @@ name: Development Actions
 
 on:
   push:
-    branches:
-      - '**'      # matches every branch
-      - '!main'   # excludes main
+    branches: ['**', '!main']
 
 jobs:
   check-requirements-tesseract:
