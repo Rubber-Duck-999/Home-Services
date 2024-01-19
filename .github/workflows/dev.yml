@@ -1,0 +1,39 @@
+name: Development Actions
+
+on:
+  push:
+    branches: ['**', '!main']
+
+jobs:
+  check-requirements-tesseract:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Check requirements
+      working-directory: tesseract
+      run: |
+        pip install safety && safety check -r requirements.txt
+  check-requirements-mood-light:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Check requirements
+      working-directory: mood-light
+      run: |
+        pip install safety && safety check -r requirements.txt
+  test-tesseract:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test
+      working-directory: tesseract
+      run: |
+        python3 test_tesseract.py
+  test-mood:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test
+      working-directory: mood-light
+      run: |
+        python3 test_main.py
