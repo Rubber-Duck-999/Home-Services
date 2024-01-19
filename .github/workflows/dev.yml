@@ -10,21 +10,21 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Check requirements
-      working-directory: ./tesseract
+      working-directory: .Tesseract/tesseract
       run: |
         pip install safety && safety check -r requirements.txt
   check-requirements-mood-light:
     runs-on: ubuntu-latest
     steps:
     - name: Check requirements
-      working-directory: ./mood-light
+      working-directory: .Tesseract/mood-light
       run: |
         pip install safety && safety check -r requirements.txt
   test-tesseract:
     runs-on: ubuntu-latest
     steps:
     - name: Test
-      working-directory: ./tesseract
+      working-directory: .Tesseract/tesseract
       run: |
         cd tesseract
         python3 test_tesseract.py
@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Test
-      working-directory: ./mood-light
+      working-directory: .Tesseract/mood-light
       run: |
         cd mood-light
         python3 test_main.py
