@@ -1,4 +1,4 @@
-name: Python
+name: Production Actions
 
 on:
   pull_request:
