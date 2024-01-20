@@ -20,5 +20,5 @@ jobs:
     - uses: actions/checkout@v3
     - name: Deploy to network node
       run: |
-        scp tesseract/tesseract.py tesseract/constants.py tesseract/requirements.txt pi@192.168.0.6:/home/pi/deploy/
-        ssh pi@192.168.0.6 bash -c "pip3 install -r /home/pi/deploy/requirements.txt"
+        scp mood-light/main.py mood-light/utilities.py mood-light/requirements.txt pi@192.168.0.59:/home/pi/deploy/
+        ssh pi@192.168.0.59 bash -c "pip3 install -r /home/pi/deploy/requirements.txt"
