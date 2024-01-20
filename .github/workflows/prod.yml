@@ -21,4 +21,4 @@ jobs:
     - name: Deploy to network node
       run: |
         scp mood-light/main.py mood-light/utilities.py mood-light/requirements.txt pi@192.168.0.59:/home/pi/deploy/
-        ssh pi@192.168.0.59 > pip3 install /home/pi/deploy/requirements.txt
+        ssh pi@192.168.0.59 bash -c "pip3 install -r /home/pi/deploy/requirements.txt"
