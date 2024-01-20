@@ -39,7 +39,7 @@ def start() -> None:
     '''
     logging.info('start()')
     now = datetime.datetime.now()
-    if now.hour > 17 and now.hour < 8:
+    if now.hour > 17 or now.hour < 8:
         logging.info('Night time')
         unicornhatmini.set_all(0, 0, 0)
         unicornhatmini.show()
