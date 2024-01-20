@@ -6,9 +6,18 @@ on:
     branches: [ "main" ]
 
 jobs:
-  deploy:
+  deploy-tesseract:
     runs-on: [self-hosted, linux, ARM64]
     steps:
     - uses: actions/checkout@v3
     - name: Deploy to network node
-      run: scp tesseract/tesseract.py tesseract/constants.py pi@192.168.0.6:/home/pi/deploy/
+      run: |
+        scp tesseract/tesseract.py tesseract/constants.py requirements.txt pi@192.168.0.6:/home/pi/deploy/
+  deploy-mood:
+    runs-on: [self-hosted, linux, ARM64]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Deploy to network node
+      run: |
+        scp mood-light/main.py mood-light/utilities.py requirements.txt pi@192.168.0.59:/home/pi/deploy/
+        ssh pi@192.168.0.59 > pip3 install /home/pi/deploy/requirements.txt
