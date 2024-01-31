@@ -32,4 +32,4 @@ jobs:
         docker build -t rubberdinghy911/data-service .
         docker tag rubberdinghy911/data-service rubberdinghy/data-service:latest
         docker login --username=${DOCKERHUB_USERNAM} --password=${DOCKERHUB_PASSWORD}
-        docker push rubbrdinghy911/data-service:latest
+        docker push rubberdinghy911/data-service:latest
