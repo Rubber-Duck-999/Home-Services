@@ -23,10 +23,10 @@ jobs:
         pip install safety && safety check -r requirements.txt
   build-data-service:
     runs-on: ubuntu-latest
+    environment: prod
     steps:
     - uses: actions/checkout@v3
     - name: Build Data Service
-      environment: prod
       working-directory: data-service
       run: |
         docker build -t rubberdinghy911/data-service .
