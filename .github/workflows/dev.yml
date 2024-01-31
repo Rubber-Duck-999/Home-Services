@@ -21,3 +21,12 @@ jobs:
       working-directory: mood-light
       run: |
         pip install safety && safety check -r requirements.txt
+  build-data-service:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build Data Service
+      working-directory: data-service
+      run: |
+        docker build -t rubberdinghy911/data-service .
+        docker tag rubberdinghy911/data-service rubberdinghy/data-service:dev
