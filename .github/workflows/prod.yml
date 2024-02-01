@@ -28,4 +28,5 @@ jobs:
     - name: Build
       working-directory: data-service
       run: |
-        mvn install
+        docker build -t data-service .
+        docker run --restart=always data-service
