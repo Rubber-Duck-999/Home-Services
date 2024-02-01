@@ -28,4 +28,4 @@ jobs:
     - name: Build
       working-directory: data-service
       run: |
-        mvn -D package
+        mvn -D compile
