@@ -28,5 +28,7 @@ jobs:
     - name: Build
       working-directory: data-service
       run: |
+        cp -r . /home/pi/Documents/data-service
+        cd /home/pi/Documents/data-service
         docker build -t data-service .
-        docker run --restart=always data-service
+        docker run --restart=always -d data-service
