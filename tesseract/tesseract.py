@@ -16,7 +16,7 @@ def show():
         leds.set_all(0, 0, 0, 0.1)
         time.sleep(30)
     else:
-        for i in 255:
+        for i in range(256):
             leds.set_all(0, 0, i, 0.1)
             time.sleep(1.0 / 60)
 
