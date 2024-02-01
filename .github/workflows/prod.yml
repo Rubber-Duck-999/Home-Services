@@ -23,13 +23,10 @@ jobs:
         scp mood-light/main.py mood-light/requirements.txt pi@192.168.0.59:/home/pi/deploy/
         ssh pi@192.168.0.59 bash -c "pip3 install -r /home/pi/deploy/requirements.txt"
   build-data-service:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, ARM64]
     steps:
-    - uses: actions/checkout@v3
-    - name: Build Data Service
+    - name: Build
       working-directory: data-service
       run: |
-        docker build -t rubberdinghy911/data-service .
-        docker tag rubberdinghy911/data-service rubberdinghy/data-service:latest
-        docker login --username=${DOCKERHUB_USERNAM} --password=${DOCKERHUB_PASSWORD}
-        docker push rubberdinghy911/data-service:latest
+        docker build -t data-service .
+        docker run --restart=always data-service

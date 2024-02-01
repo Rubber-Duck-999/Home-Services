@@ -22,11 +22,10 @@ jobs:
       run: |
         pip install safety && safety check -r requirements.txt
   build-data-service:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, ARM64]
     steps:
     - uses: actions/checkout@v3
-    - name: Build Data Service
+    - name: Build
       working-directory: data-service
       run: |
-        docker build -t rubberdinghy911/data-service .
-        docker tag rubberdinghy911/data-service rubberdinghy/data-service:dev
+        docker build -t test .
