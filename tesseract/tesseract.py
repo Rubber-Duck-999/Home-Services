@@ -19,26 +19,38 @@ leds.set_clear_on_exit(False)
 start = 0
 end = 60
 
+def make_gaussian(fwhm):
+    x = np.arange(0, leds.NUM_PIXELS, 1, float)
+    y = x[:, np.newaxis]
+    x0, y0 = 3.5, 3.5
+    fwhm = fwhm
+    gauss = np.exp(-4 * np.log(2) * ((x - x0) ** 2 + (y - y0) ** 2) / fwhm ** 2)
+    return gauss
+
 def lights():
     i = 0
     while i < 3600:
-        wait = np.random.choice(np.random.noncentral_chisquare(5, 1, 1000), 1)[0] / 50
-        n = np.random.choice(np.random.noncentral_chisquare(5, 0.1, 1000), 1)
-        limit = int(n[0])
+        for z in list(range(1, 10)[::-1]) + list(range(1, 10)):
+            fwhm = 5.0 / z
+            gauss = make_gaussian(fwhm)
+            start = time.time()
+            y = 4
 
-        if limit > leds.NUM_PIXELS:
-            limit = leds.NUM_PIXELS
+            for x in range(leds.NUM_PIXELS):
+                h = 0.65
+                s = 1.0
+                v = gauss[x, y]
+                rgb = colorsys.hsv_to_rgb(h, s, v)
+                r, g, b = [int(255.0 * i) for i in rgb]
+                leds.set_pixel(x, r, g, b)
 
-        for pixel in range(limit):
-            hue = start + (((end - start) / float(leds.NUM_PIXELS)) * pixel)
-            r, g, b = [int(c * 255) for c in colorsys.hsv_to_rgb(hue / 360.0, 1.0, 1.0)]
-            leds.set_pixel(pixel, r, g, b)
             leds.show()
-            time.sleep(0.05 / (pixel + 1))
+            end = time.time()
+            t = end - start
 
-        time.sleep(wait)
-        leds.clear()
-        i = i + 1
+            if t < 0.04:
+                time.sleep(0.04 - t)
+            i = i + 1
 
 
 def show():
