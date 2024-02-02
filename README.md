@@ -23,7 +23,3 @@ Uses this led array to show internet speed
 
 [Link](https://shop.pimoroni.com/products/blinkt?variant=22408658695)
 
-
-## Testing
-
-`python3 test_tesseract.py`
