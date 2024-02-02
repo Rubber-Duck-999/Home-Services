@@ -17,7 +17,6 @@ except ImportError:
 leds.clear()
 leds.set_clear_on_exit(False)
 start = 0
-end = 60
 
 def make_gaussian(fwhm):
     x = np.arange(0, leds.NUM_PIXELS, 1, float)
@@ -37,7 +36,7 @@ def lights():
             y = 4
 
             for x in range(leds.NUM_PIXELS):
-                h = 0.65
+                h = 0.63
                 s = 1.0
                 v = gauss[x, y]
                 rgb = colorsys.hsv_to_rgb(h, s, v)
