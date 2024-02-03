@@ -28,4 +28,12 @@ jobs:
     - name: Build
       working-directory: data-service
       run: |
-        docker build -t test .
+        docker build -t data-test .
+  build-dashboard:
+    runs-on: [self-hosted, linux, ARM64]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      working-directory: dashboard
+      run: |
+        docker build -t dash-test .
