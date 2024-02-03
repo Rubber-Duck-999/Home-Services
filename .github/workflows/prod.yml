@@ -30,15 +30,15 @@ jobs:
       run: |
         cp -r . /home/pi/Documents/data-service
         cd /home/pi/Documents/data-service
-        docker build -t data-service .
-        docker run --restart=always -d data-service
+        docker compose down
+        docker compose up -d
   build-website:
     runs-on: [self-hosted, linux, ARM64]
     steps:
     - name: Build
-      working-directory: data-service
+      working-directory: dashboard
       run: |
         cp -r . /home/pi/Documents/dashboard
         cd /home/pi/Documents/dashboard
-        docker build -t dashboard .
-        docker run --restart=always -d dashboard
+        docker compose down
+        docker compose up -d

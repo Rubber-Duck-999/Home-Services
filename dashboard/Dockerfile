@@ -14,6 +14,6 @@ FROM nginx:stable-alpine
 #Set working folder
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=builder /app/build /usr/share/nginx/html
-EXPOSE 7000
+EXPOSE 80
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
