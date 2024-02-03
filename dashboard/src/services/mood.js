@@ -1,7 +1,7 @@
 export async function GetMood() {
   let json = null;
   try {
-    const response =  await fetch(`http://192.168.0.86:5000/mood/`);
+    const response =  await fetch(`http://192.168.0.86:5555/mood/`);
     if(response.status != 200) {
       console.log(response);
     } else {
@@ -21,7 +21,7 @@ export async function UpdateMood(state) {
     const data = {
       state: state
     }
-    const response =  await fetch(`http://192.168.0.86:5000/mood/`, {
+    const response =  await fetch(`http://192.168.0.86:5555/mood/`, {
       method: 'PUT',
       headers:{
         'Content-Type': ['application/json', 'text/plain'],

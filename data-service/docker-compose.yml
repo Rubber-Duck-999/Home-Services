@@ -4,4 +4,4 @@ services:
     build: .
     image: data-service
     ports:
-      - 5000:5000
+      - 5555:5000
