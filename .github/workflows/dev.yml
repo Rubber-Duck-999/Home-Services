@@ -36,4 +36,8 @@ jobs:
     - name: Build
       working-directory: dashboard
       run: |
-        docker build -t dash-test .
+        cp -r . /home/pi/Documents/dashboard
+        cd /home/pi/Documents/dashboard
+        docker compose down
+        docker build -t dashboard .
+        docker compose up -d
