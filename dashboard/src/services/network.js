@@ -1,7 +1,7 @@
 async function GetNetworkData() {
   let json = null;
   try {
-    const response =  await fetch(`http://192.168.0.86:5000/network/list`);
+    const response =  await fetch(`http://192.168.0.86:5555/network/list`);
 
     if(response.status != 200) {
       console.log(response);
