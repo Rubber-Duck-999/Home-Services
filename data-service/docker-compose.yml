@@ -2,6 +2,5 @@ version: "3"
 services:
   data-service:
     build: .
-    image: data-service
     ports:
       - 5555:5000

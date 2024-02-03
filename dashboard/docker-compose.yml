@@ -2,6 +2,5 @@ version: "3"
 services:
   dashboard:
     build: .
-    image: dashboard
     ports:
       - 7000:80
