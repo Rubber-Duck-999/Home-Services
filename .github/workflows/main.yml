@@ -29,7 +29,7 @@ jobs:
   deploy-tesseract:
     runs-on: [self-hosted, linux, X64]
     needs: check-requirements
-    if: ${{ github.event.push.changes.any(file => startsWith(file.filename, 'tesseract/')) }}
+    if: contains(github.event.head_commit.message, '[tesseract]')
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -42,7 +42,7 @@ jobs:
   deploy-mood:
     runs-on: [self-hosted, linux, X64]
     needs: check-requirements
-    if: ${{ github.event.push.changes.any(file => startsWith(file.filename, 'mood-light/')) }}
+    if: contains(github.event.head_commit.message, '[mood]')
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -55,7 +55,7 @@ jobs:
   build-data-service:
     runs-on: [self-hosted, linux, X64]
     needs: check-requirements
-    if: ${{ github.event.push.changes.any(file => startsWith(file.filename, 'data-service/')) }}
+    if: contains(github.event.head_commit.message, '[data-service]')
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -72,7 +72,7 @@ jobs:
   build-website:
     runs-on: [self-hosted, linux, X64]
     needs: check-requirements
-    if: ${{ github.event.push.changes.any(file => startsWith(file.filename, 'dashboard/')) }}
+    if: contains(github.event.head_commit.message, '[website]')
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
