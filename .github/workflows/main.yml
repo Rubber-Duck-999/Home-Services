@@ -9,7 +9,6 @@ jobs:
   check-requirements-tesseract:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
     - name: Check requirements
       working-directory: tesseract
       run: |
@@ -18,14 +17,13 @@ jobs:
   check-requirements-mood-light:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
     - name: Check requirements
       working-directory: mood-light
       run: |
         pip install safety && safety check -r requirements.txt
 
   deploy-tesseract:
-    runs-on: [self-hosted, linux, ARM64]
+    runs-on: [self-hosted, linux, X64]
     steps:
     - uses: actions/checkout@v3
     - name: Deploy to network node
@@ -34,7 +32,7 @@ jobs:
         ssh pi@192.168.0.6 bash -c "pip3 install -r /home/pi/deploy/requirements.txt"
 
   deploy-mood:
-    runs-on: [self-hosted, linux, ARM64]
+    runs-on: [self-hosted, linux, X64]
     steps:
     - uses: actions/checkout@v3
     - name: Deploy to network node
@@ -43,7 +41,7 @@ jobs:
         ssh pi@192.168.0.151 bash -c "pip3 install -r /home/pi/deploy/requirements.txt"
 
   build-data-service:
-    runs-on: [self-hosted, linux, ARM64]
+    runs-on: [self-hosted, linux, X64]
     steps:
     - name: Build
       working-directory: data-service
@@ -55,7 +53,7 @@ jobs:
         docker compose up -d
 
   build-website:
-    runs-on: [self-hosted, linux, ARM64]
+    runs-on: [self-hosted, linux, X64]
     steps:
     - name: Build
       working-directory: dashboard
