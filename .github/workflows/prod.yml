@@ -1,11 +1,22 @@
 name: Production Actions
 
-on:
-  pull_request:
-    types: closed
-    branches: [ "main" ]
-
 jobs:
+  check-requirements-tesseract:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Check requirements
+      working-directory: tesseract
+      run: |
+        pip install safety && safety check -r requirements.txt
+  check-requirements-mood-light:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Check requirements
+      working-directory: mood-light
+      run: |
+        pip install safety && safety check -r requirements.txt
   deploy-tesseract:
     runs-on: [self-hosted, linux, ARM64]
     steps:

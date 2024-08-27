@@ -1,9 +1,5 @@
 name: Development Actions
 
-on:
-  push:
-    branches: ['**', '!main']
-
 jobs:
   check-requirements-tesseract:
     runs-on: ubuntu-latest
