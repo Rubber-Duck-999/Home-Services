@@ -1,5 +1,10 @@
 name: Production Actions
 
+on: 
+  push:
+    branches:
+      - '**'  # This matches all branches, triggering on any push to any branch
+
 jobs:
   check-requirements-tesseract:
     runs-on: ubuntu-latest
@@ -9,6 +14,7 @@ jobs:
       working-directory: tesseract
       run: |
         pip install safety && safety check -r requirements.txt
+
   check-requirements-mood-light:
     runs-on: ubuntu-latest
     steps:
@@ -17,6 +23,7 @@ jobs:
       working-directory: mood-light
       run: |
         pip install safety && safety check -r requirements.txt
+
   deploy-tesseract:
     runs-on: [self-hosted, linux, ARM64]
     steps:
@@ -25,6 +32,7 @@ jobs:
       run: |
         scp tesseract/tesseract.py tesseract/constants.py tesseract/requirements.txt pi@192.168.0.6:/home/pi/deploy/
         ssh pi@192.168.0.6 bash -c "pip3 install -r /home/pi/deploy/requirements.txt"
+
   deploy-mood:
     runs-on: [self-hosted, linux, ARM64]
     steps:
@@ -33,6 +41,7 @@ jobs:
       run: |
         scp mood-light/main.py mood-light/requirements.txt pi@192.168.0.151:/home/pi/deploy/
         ssh pi@192.168.0.151 bash -c "pip3 install -r /home/pi/deploy/requirements.txt"
+
   build-data-service:
     runs-on: [self-hosted, linux, ARM64]
     steps:
@@ -44,6 +53,7 @@ jobs:
         docker compose down
         docker build -t data-service .
         docker compose up -d
+
   build-website:
     runs-on: [self-hosted, linux, ARM64]
     steps:
